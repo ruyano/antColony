@@ -13,19 +13,19 @@ import javax.swing.JFrame
 
 object CaixeiroViajanteFormigas {
     private var numCidades = 150
-    private val numFormigas = 100
+    private val numFormigas = 1
     private val epoch = 50
     private val alpha = 3.0 // peso do feromonio
     private val beta = 2.0 // peso da distancia
-    private val reducaoFeromonio = 1.0 // 10% de perda de
-    private val aumentoFeromonio = 2.0 // 200% de ganho de
-    private var distancias: Array<IntArray>? = null
+    private val reducaoFeromonio = 0.1 // 10% de perda de
+    private val aumentoFeromonio = 1.0 // 200% de ganho de
+    private var distancias: Array<DoubleArray>? = null
     private var formigas: Array<IntArray>? = null
     private var feromonios: Array<DoubleArray>? = null
     private var melhorRota: IntArray? = null
-    private var melhorDistancia: Int = 0
+    private var melhorDistancia: Double = 0.0
     private val random = Random(System.currentTimeMillis())
-    private var resultados: MutableMap<Int, Int>? = null
+    private var resultados: MutableMap<Int, Double>? = null
 
     @JvmStatic
     fun main(args: Array<String>) {
@@ -81,8 +81,8 @@ object CaixeiroViajanteFormigas {
         out.printf(formigas!!.toString())
     }
 
-    private fun distanciaPercorrida(cidades: IntArray): Int {
-        var ret = 0
+    private fun distanciaPercorrida(cidades: IntArray): Double {
+        var ret = 0.0
         for (i in 0 until cidades.size - 1) {
             ret += distancias!![cidades[i]][cidades[i + 1]]
         }
@@ -92,7 +92,7 @@ object CaixeiroViajanteFormigas {
     private fun melhorRota() {
         for (i in 0 until numFormigas) {
             val dist = distanciaPercorrida(formigas!![i])
-            if (melhorDistancia == 0 || dist < melhorDistancia) {
+            if (melhorDistancia == 0.0 || dist < melhorDistancia) {
                 if (melhorRota == null) {
                     melhorRota = IntArray(numCidades + 1)
                 }

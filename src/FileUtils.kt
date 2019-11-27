@@ -8,7 +8,7 @@ fun main() {
     criaDistancias()
 }
 
-fun createFile(distancias: Array<IntArray>) {
+fun createFile(distancias: Array<DoubleArray>) {
     val file = File(fileName)
     if (file.exists()) file.delete()
     file.createNewFile()
@@ -23,35 +23,35 @@ fun createFile(distancias: Array<IntArray>) {
     }
 }
 
-fun readFromFile() : Array<IntArray>{
-    val finalArray: MutableList<IntArray> = ArrayList()
+fun readFromFile() : Array<DoubleArray>{
+    val finalArray: MutableList<DoubleArray> = ArrayList()
     File(fileName).forEachLine { lineStr ->
-        val line: MutableList<Int> = ArrayList()
+        val line: MutableList<Double> = ArrayList()
         lineStr.replace("\n","")
         lineStr.split(" ").forEach { number ->
             if (number.isNotBlank()) {
-                line.add(number.toInt())
+                line.add(number.toDouble())
             }
         }
-        finalArray.add(line.toIntArray())
+        finalArray.add(line.toDoubleArray())
     }
     return finalArray.toTypedArray()
 }
 
 private fun criaDistancias() {
-    val finalArray : MutableList<IntArray> = ArrayList()
+    val finalArray : MutableList<DoubleArray> = ArrayList()
     for (i in 0 until cityAmount) {
-        val array : MutableList<Int> = ArrayList()
+        val array : MutableList<Double> = ArrayList()
         for (j in 0 until cityAmount) {
-            array.add(0)
+            array.add(0.0)
         }
-        finalArray.add(array.toIntArray())
+        finalArray.add(array.toDoubleArray())
     }
 
     for (i in 0 until cityAmount) {
         for (j in 0 until cityAmount) {
-            val distancia = if (i == j) 0
-            else Random.nextInt(20) + 1
+            val distancia = if (i == j) 0.0
+            else Random.nextDouble(20.0) + 1
             finalArray[i][j] = distancia
             finalArray[j][i] = distancia
         }
