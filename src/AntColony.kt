@@ -13,9 +13,9 @@ import javax.swing.JFrame
 
 object CaixeiroViajanteFormigas {
     private var numCidades = 150
-    private val numFormigas = 1
+    private val numFormigas = 100
     private val epoch = 50
-    private val alpha = 3.0 // peso do feromonio
+    private val alpha = 8.0 // peso do feromonio
     private val beta = 2.0 // peso da distancia
     private val reducaoFeromonio = 0.1 // 10% de perda de
     private val aumentoFeromonio = 1.0 // 200% de ganho de
@@ -34,6 +34,7 @@ object CaixeiroViajanteFormigas {
         distribuiFormigas()
         inicializaFeromonios()
         for (i in 0 until epoch) {
+//            imprimeFormigas(i)
             atualizaFeromonios()
             if (i > 0) {
                 atualizaRotasFormigas()
@@ -43,6 +44,18 @@ object CaixeiroViajanteFormigas {
             armazenaResultados(i)
         }
         apresentaGrafico()
+    }
+
+    private fun imprimeFormigas(epoch: Int) {
+        println()
+        print("Formigas na epoca $epoch:")
+        formigas?.forEach { formiga ->
+            println()
+            formiga.forEach {
+                print("$it ")
+            }
+            print(" distancia = ${distanciaPercorrida(formiga)}")
+        }
     }
 
     fun printMelhorRota(epoca: Int) {
