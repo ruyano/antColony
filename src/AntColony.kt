@@ -15,8 +15,8 @@ object CaixeiroViajanteFormigas {
     private var numCidades = 150
     private val numFormigas = 100
     private val epoch = 50
-    private val alpha = 8.0 // peso do feromonio
-    private val beta = 2.0 // peso da distancia
+    private val alpha = 9.0 // peso do feromonio
+    private val beta = 1.0 // peso da distancia
     private val reducaoFeromonio = 0.1 // 10% de perda de
     private val aumentoFeromonio = 1.0 // 200% de ganho de
     private var distancias: Array<DoubleArray>? = null
